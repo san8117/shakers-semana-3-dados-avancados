@@ -1,0 +1,63 @@
+{{'metaobject-slider.css' | asset_url | stylesheet_tag}}
+
+<link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js" defer></script>
+
+
+{% assign product_section = section.settings.products %}
+{% assign product = all_products[product_section] %}
+
+{% assign products_related = product.metafields.custom.related_products_with_banner.value %}
+
+<body>
+  <section>
+    <main>
+      {%if products_related != blank %}
+        
+        <div class="swaper">
+          {%for products_banner in products_related%}
+            {%assign banner = products_banner.banner%}
+            {%assign product_handle = products_banner.produto%}
+            {% assign product = all_products[product_handle] %}
+            <div class="swiper-slide">Slide 1</div>
+
+            <img src="{{banner |  image_url: width: 40}}" alt="{{product.title}}" width="400" height="400" />
+            <h2>{{product.title}}</h2>
+            <p>{{product.price |  money}}</p>
+            <a href="{{product.url}}">Saiba Mais</a>
+
+            
+          {%endfor%}
+       
+        
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-scrollbar"></div>
+        </div>
+
+      {% endif %}
+    </main>
+  </section>
+</body>
+
+
+
+
+
+
+{% schema  %} 
+{
+  "name": "metaobject-slider",
+  "settings": [
+    {
+      "type": "product",
+      "id": "products",
+      "label": "Produto"
+    }],
+
+    "presets": [{
+        "name": "metaobject-slider"
+    }]
+}
+ {% endschema %}
