@@ -9,6 +9,8 @@
 
 {% assign products_related = product.metafields.custom.related_products_with_banner.value %}
 
+
+
 <body>
   <section>
     <main>
@@ -17,12 +19,14 @@
         <div class="swaper">
           {%for products_banner in products_related%}
             {%assign banner = products_banner.banner%}
-            {%assign product_handle = products_banner.produto%}
-            {% assign product = all_products[product_handle] %}
+            {%assign product = products_banner.produto%}
             <div class="swiper-slide">Slide 1</div>
+
+         
 
             <img src="{{banner |  image_url: width: 40}}" alt="{{product.title}}" width="400" height="400" />
             <h2>{{product.title}}</h2>
+            <img src="{{product.featured_image |  image_url: width: 40}}" alt="{{product.title}}" width="400" height="400" />
             <p>{{product.price |  money}}</p>
             <a href="{{product.url}}">Saiba Mais</a>
 
@@ -40,11 +44,6 @@
     </main>
   </section>
 </body>
-
-
-
-
-
 
 {% schema  %} 
 {
