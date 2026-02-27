@@ -1,9 +1,8 @@
 {
   "sections": {
-    "product": {
-      "type": "product",
-      "settings": {}
+    "metaobject": {
+      "type": "metaobject-slider"
     }
   },
-  "order": ["product"]
+  "order": ["metaobject"]
 }

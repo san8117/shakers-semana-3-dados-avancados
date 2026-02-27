@@ -1,8 +1,7 @@
-import Swiper from 'swiper/bundle';
+document.addEventListener('DOMContentLoaded', function() {
+ 
 
-
-const swiper = new Swiper('.swiper', {
-  
+  const swiper = new Swiper('.swiper', {
   direction: 'horizontal',
   loop: true,
 
@@ -19,4 +18,7 @@ const swiper = new Swiper('.swiper', {
   scrollbar: {
     el: '.swiper-scrollbar',
   },
+  
+  });
 });
+

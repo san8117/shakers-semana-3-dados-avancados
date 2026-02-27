@@ -1,61 +1,49 @@
-{{'metaobject-slider.css' | asset_url | stylesheet_tag}}
-
-
-
+{{ 'metaobject-slider.css' | asset_url | stylesheet_tag }}
+{{ 'metaobject-slider.js' | asset_url | script_tag }}
 
 {% assign product_section = section.settings.products %}
 {% assign product = all_products[product_section] %}
 
 {% assign products_related = product.metafields.custom.list_banner_with_product.value %}
 
-
-
-
-  <section>
-    <main>
-      {%if products_related != blank %}
-          <div class="swiper">
-            
-            <div class="swiper-wrapper">
-
-            {%for products_banner in products_related%}
-            {%assign banner = products_banner.banner%}
-            {%assign product_handle = products_banner.produto%}
-            {%assign products_h = all_products[product_handle]%}
-            
-            
-           
-             <div class="swiper-slide">
-
-             <a href="{{ products_h.url}}">
-             <img src="{{banner |  image_url: width: 400, height: 500}}" alt="{{product.title}}" width="400" height="400" />
-             <h2>{{products_h.title}}</h2>
-             <img src="{{products_h.featured_image |  image_url: width: 800, height: 300}}" alt="{{product.title}}" width="400" height="400" />
-             </a>
-
-             </div>
-              
-
-              {%endfor%}
-              
+<section>
+  <main>
+    {% if products_related != blank %}
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          {% for products_slider in products_related %}
+            <div class="swiper-slide">
+              <img src="{{products_slider.banner |  image_url: width: 700 , height: 350}}"alt="{{products_slider.banner.alt}}"width=""height=""
+              >
             </div>
-            
-            <div class="swiper-pagination"></div>
+          {% endfor %}
+        </div>
 
-            
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
 
-            
-            <div class="swiper-scrollbar"></div>
-          </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
 
-      {% endif %}
-    </main>
-  </section>
+      {% for products_banner in products_related %}
+        {% assign product_handle = products_banner.produto %}
+        {% assign product_b_handle = all_products[product_handle] %}
 
+        <a href="{{ product_b_handle.url}}">
+          <img
+            src="{{product_b_handle.featured_image |  image_url: width: 100, height: 100}}"
+            alt="{{product_b_handle.featured_image.alt}}"
+            width="300"
+            height="300"
+          >
+          <h2>{{ product_b_handle.title }}</h2>
+        </a>
+      {% endfor %}
+    {% endif %}
+  </main>
+</section>
 
-{% schema  %} 
+{% schema %}
 {
   "name": "metaobject-slider",
   "settings": [
@@ -63,10 +51,13 @@
       "type": "product",
       "id": "products",
       "label": "Produto"
-    }],
+    }
+  ],
 
-    "presets": [{
-        "name": "metaobject-slider"
-    }]
+  "presets": [
+    {
+      "name": "metaobject-slider"
+    }
+  ]
 }
- {% endschema %}
+{% endschema %}
