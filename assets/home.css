@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+
+.page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+
+    
+}
+
+.page-container img {
+    width: 250px;
+    height: 150px;
+    border-radius: 7px;
+    margin-bottom: 1rem;
+}
+
+.page-container a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+
+}
+
+.page-container a:hover {
+    color: black;
+    transform: scale(1.1);
+    transition: ease-in-out 0.5s;
+
+}
