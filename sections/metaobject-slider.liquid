@@ -1,49 +1,59 @@
 {{'metaobject-slider.css' | asset_url | stylesheet_tag}}
 
-<link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
-<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js" defer></script>
+
 
 
 {% assign product_section = section.settings.products %}
 {% assign product = all_products[product_section] %}
 
-{% assign products_related = product.metafields.custom.related_products_with_banner.value %}
+{% assign products_related = product.metafields.custom.list_banner_with_product.value %}
 
 
 
-<body>
+
   <section>
     <main>
       {%if products_related != blank %}
-        
-        <div class="swaper">
-          {%for products_banner in products_related%}
+          <div class="swiper">
+            
+            <div class="swiper-wrapper">
+
+            {%for products_banner in products_related%}
             {%assign banner = products_banner.banner%}
-            {%assign product = products_banner.produto%}
-            <div class="swiper-slide">Slide 1</div>
+            {%assign product_handle = products_banner.produto%}
+            {%assign products_h = all_products[product_handle]%}
+            
+            
+           
+             <div class="swiper-slide">
 
-         
+             <a href="{{ products_h.url}}">
+             <img src="{{banner |  image_url: width: 400, height: 500}}" alt="{{product.title}}" width="400" height="400" />
+             <h2>{{products_h.title}}</h2>
+             <img src="{{products_h.featured_image |  image_url: width: 800, height: 300}}" alt="{{product.title}}" width="400" height="400" />
+             </a>
 
-            <img src="{{banner |  image_url: width: 40}}" alt="{{product.title}}" width="400" height="400" />
-            <h2>{{product.title}}</h2>
-            <img src="{{product.featured_image |  image_url: width: 40}}" alt="{{product.title}}" width="400" height="400" />
-            <p>{{product.price |  money}}</p>
-            <a href="{{product.url}}">Saiba Mais</a>
+             </div>
+              
+
+              {%endfor%}
+              
+            </div>
+            
+            <div class="swiper-pagination"></div>
 
             
-          {%endfor%}
-       
-        
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-scrollbar"></div>
-        </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+            
+            <div class="swiper-scrollbar"></div>
+          </div>
 
       {% endif %}
     </main>
   </section>
-</body>
+
 
 {% schema  %} 
 {

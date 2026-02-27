@@ -1,0 +1,22 @@
+<section> 
+    <main>
+    
+        <div class="product-container">
+
+        <div class="product">
+          <img src="{{product.featured_image |  image_url: width: 300, height: 300}}" alt="{{product.featured_image.alt}} " width="300" height="300">
+        </div>
+    
+            <div class="buy-product">
+    
+            <h1>{{product.title}}</h1>
+            <h2>{{product.price |  money}}</h2>
+            <button>Comprar</button>
+        
+        </div>
+    
+    
+    
+        </div>
+    </main>
+</section>
